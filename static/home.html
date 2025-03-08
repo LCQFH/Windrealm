@@ -984,4 +984,110 @@
 
         // 更新服务器状态显示
         function updateServerStatus(data) {
-            const statusDot = document.getElementById('stat
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            const playersOnline = document.getElementById('playersOnline');
+            const playersMax = document.getElementById('playersMax');
+            const serverVersion = document.getElementById('serverVersion');
+            const uptime = document.getElementById('uptime');
+            const lastUpdated = document.getElementById('lastUpdated');
+            
+            // 更新服务器状态
+            statusDot.classList.add('online');
+            statusText.textContent = '在线';
+            
+            // 更新玩家数量
+            playersOnline.textContent = data.players.online;
+            playersMax.textContent = data.players.max; // 最大玩家数
+            
+            // 更新服务器版本
+            serverVersion.textContent = data.version;
+            
+            // 更新运行时间
+            uptime.textContent = '3个月'; // 这个API不提供运行时间，所以保持原值
+            
+            // 更新最后更新时间
+            lastUpdated.textContent = new Date().toLocaleString();
+            
+            // 更新MOTD
+            const motdElement = document.getElementById('motd');
+            if (motdElement) {
+                motdElement.textContent = data.motd.clean.join('\n');
+            }
+            
+            // 更新在线玩家列表
+            updatePlayerList(data.players.list || []);
+        }
+
+        // 更新在线玩家列表
+        function updatePlayerList(players) {
+            const playersGrid = document.getElementById('playersGrid');
+            playersGrid.innerHTML = ''; // 清空现有玩家列表
+            
+            if (!players || players.length === 0) {
+                const emptyPlayerCard = document.createElement('div');
+                emptyPlayerCard.className = 'player-card';
+                emptyPlayerCard.innerHTML = '<p class="player-info">暂无在线玩家</p>';
+                playersGrid.appendChild(emptyPlayerCard);
+                return;
+            }
+            
+            players.forEach(player => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                
+                const playerName = player.name || '匿名玩家';
+                let skinUrl = `https://vzge.me/face/640/${playerName}`;
+                
+                // 尝试获取头像，如果失败则使用默认头像
+                fetch(skinUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('获取头像失败');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const imageUrl = URL.createObjectURL(blob);
+                        playerCard.innerHTML = `
+                            <img src="${imageUrl}" alt="${playerName}" class="player-avatar">
+                            <div class="player-info">
+                                <h3>${playerName}</h3>
+                                <p>最后上线: 刚刚</p>
+                            </div>
+                        `;
+                    })
+                    .catch(error => {
+                        console.error('获取头像时出错:', error);
+                        playerCard.innerHTML = `
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZjVmNWY1Ii8+PHRleHQgeD0iMjUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+Rm9udCBBcnRpZmllcjwvdGV4dD48L3N2Zz4=" alt="${playerName}" class="player-avatar">
+                            <div class="player-info">
+                                <h3>${playerName}</h3>
+                                <p>最后上线: 刚刚</p>
+                            </div>
+                        `;
+                    });
+                
+                playersGrid.appendChild(playerCard);
+            });
+        }
+        
+        // 初始加载服务器状态
+        fetchServerStatus();
+        
+        // 每5分钟刷新一次服务器状态
+        setInterval(fetchServerStatus, 300000);
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
