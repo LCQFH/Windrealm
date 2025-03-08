@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<g id="Layer_10" style="display:none;">
+	<g style="display:inline;opacity:0.05;">
+		<circle style="fill:#FFFFFF;" cx="24" cy="24" r="19.5"/>
+		<path d="M24,5c10.477,0,19,8.523,19,19s-8.523,19-19,19S5,34.477,5,24S13.523,5,24,5 M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20
+			s20-8.954,20-20S35.046,4,24,4L24,4z"/>
+	</g>
+	<g style="display:inline;opacity:0.05;">
+		<rect x="6.5" y="6.5" style="fill:#FFFFFF;" width="35" height="35"/>
+		<path d="M41,7v34H7V7H41 M42,6H6v36h36V6L42,6z"/>
+	</g>
+</g>
+<g id="filled">
+</g>
+<g id="outlined">
+</g>
+<g id="rounded">
+</g>
+<g id="two_x5F_tone">
+</g>
+<g id="sharp">
+</g>
+<g id="win10">
+</g>
+<g id="ios_x5F_out">
+</g>
+<g id="ios_x5F_filled">
+</g>
+<g id="color">
+	<rect x="18" y="12" style="fill:#FFFFFF;" width="12" height="24"/>
+	<path style="fill:#FBC02D;" d="M29,3H19h-7c-1.657,0-3,1.343-3,3v29l5,1l5-1V13h10l1-5L29,3z"/>
+	<polygon style="fill:#4CAF50;" points="29,45 19,45 18,40 19,35 29,35 30,40 	"/>
+	<path style="fill:#2E7D32;" d="M19,35v10h-7c-1.657,0-3-1.343-3-3v-7H19z"/>
+	<polygon style="fill:#1E88E5;" points="39,35 34,36 29,35 29,13 34,12 39,13 	"/>
+	<path style="fill:#1565C0;" d="M29,35h10v7c0,1.657-1.343,3-3,3h-7V35z"/>
+	<polygon style="fill:#E53935;" points="39,13 29,13 29,3 	"/>
+</g>
+<g id="fluent">
+</g>
+</svg>
